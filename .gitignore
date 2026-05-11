@@ -216,3 +216,37 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# === Custom rules for this project ===
+
+# Données propriétaires Bloomberg (ne jamais publier)
+data/raw/
+data/*.xlsx
+data/*.xls
+*_bloomberg.csv
+
+# Quarto build artifacts (généré automatiquement, pas besoin de versionner)
+/_site/
+/.quarto/
+*.html
+!index.html
+
+# OS-specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Outputs temporaires
+*.log
