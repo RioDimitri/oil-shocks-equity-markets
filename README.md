@@ -28,9 +28,6 @@
 ├── extract_figures.py       # script to extract figures from notebook
 └── rename_figures.py        # script to rename figures with descriptive labels
 
-## Context
-
-This empirical study was conducted in April 2026 as the first project of the *Empirical Methods in Finance* course of the MSc Finance programme at HEC Lausanne.
 
 ## Reproducibility
 
