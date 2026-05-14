@@ -228,8 +228,9 @@ data/*.xls
 # Quarto build artifacts (généré automatiquement, pas besoin de versionner)
 /_site/
 /.quarto/
-*.html
-!index.html
+
+# Ne pas exclure analysis.html (le notebook converti qu'on embed dans le site)
+# (anciennes règles *.html supprimées car bloquaient le notebook)
 
 # OS-specific
 .DS_Store
