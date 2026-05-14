@@ -1,0 +1,20 @@
+---
+title: "About"
+---
+
+## Project context
+
+This empirical study was conducted in April 2026 as the first project of the *Empirical Methods in Finance* course of the MSc Finance programme at HEC Lausanne.
+
+## Team
+
+- **Prouvost Dimitri** (maintainer of this repository)
+
+## Contact
+
+- **Email**: prouvostdimitri@gmail.com
+- **GitHub**: [@riodesamba](https://github.com/riodesamba)
+
+## License
+
+The code in this repository is released under the MIT License. The data sources are publicly available (see [Methodology](methodology.qmd)).

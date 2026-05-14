@@ -1,0 +1,136 @@
+---
+title: "Methodology"
+subtitle: "Empirical strategy: from OLS to VAR"
+---
+
+This page details the empirical strategy used in the study. Equations and full results are in the [complete report](report/EMIF_oil_equity_report.pdf).
+
+## Data and transformations
+
+### Financial series (daily, 1990–2026)
+
+All price series are transformed into log-returns:
+
+$$r_t = 100 \times (\log P_t - \log P_{t-1})$$
+
+US 10-year Treasury yield is taken in first differences (it is already a rate, not a price).
+
+| Variable | Role |
+|---|---|
+| Brent crude oil | Main oil variable |
+| MSCI World | Developed markets equity |
+| MSCI Emerging Markets | EM equity |
+| US 10-year Treasury yield | Interest-rate control |
+
+### Macroeconomic series (monthly, 1990–2026)
+
+| Variable | Source | Role |
+|---|---|---|
+| CFNAI | Chicago Fed | Recession proxy (threshold: −0.7) |
+| ISM Manufacturing | ISM | Economic expansion/contraction (threshold: 50) |
+| Industrial Production | FRED | Alternative real activity measure |
+
+## Preliminary diagnostics
+
+Before estimation, we run a full diagnostic suite to verify the standard assumptions:
+
+- **Descriptive statistics**: mean, variance, skewness, kurtosis. All series are negatively skewed with heavy tails (oil: skewness −0.95, excess kurtosis 18.7).
+- **Normality** (Jarque-Bera): rejected at 5% for all series.
+- **Stationarity**: ADF (null = unit root) and KPSS (null = stationary). All return series are stationary; only Industrial Production levels are non-stationary, but it is only used as a binary dummy in robustness checks.
+- **Serial correlation** (Ljung-Box on returns and squared returns): significant for all series, indicating volatility clustering (Cont 2001). This motivates the use of Newey-West HAC standard errors throughout.
+
+## Baseline OLS specifications
+
+### Simultaneous regression
+
+We start with a static OLS at daily frequency:
+
+$$r_{eq,t} = \alpha + \beta_1 r_{oil,t} + \beta_2 \Delta r_{rate,t} + \varepsilon_t$$
+
+Estimated separately for World and EM equity. Standard errors are computed using the Newey-West HAC estimator to account for residual heteroskedasticity and autocorrelation.
+
+### Asymmetric oil decomposition
+
+To test whether positive and negative oil moves are priced differently, we decompose:
+
+$$r_{oil,t}^{+} = \max(r_{oil,t}, 0), \quad r_{oil,t}^{-} = \min(r_{oil,t}, 0)$$
+
+And estimate:
+
+$$r_{eq,t} = \alpha + \beta_1 r_{oil,t}^{+} + \beta_2 r_{oil,t}^{-} + \beta_3 \Delta r_{rate,t} + \varepsilon_t$$
+
+The test of asymmetry is a Wald test on $H_0: \beta_1 = \beta_2$.
+
+### Recession interaction
+
+We introduce a binary recession dummy based on CFNAI (following Brave 2009):
+
+$$\text{Recession}_t = \mathbb{1}(\text{CFNAI}_t < -0.7)$$
+
+And estimate at monthly frequency:
+
+$$r_{eq,t} = \alpha + \beta_1 r_{oil,t} + \beta_2 \text{Recession}_t + \beta_3 (r_{oil,t} \times \text{Recession}_t) + \varepsilon_t$$
+
+The interaction coefficient $\beta_3$ captures whether oil shocks are amplified during economic downturns.
+
+### Robustness across alternative macro indicators
+
+We re-estimate the interaction model using three alternative measures of economic weakness:
+
+- **IP dummy**: 1 if Industrial Production below its sample median
+- **ISM dummy**: 1 if ISM Manufacturing below 50 (expansion/contraction threshold)
+- **Continuous CFNAI**: actual CFNAI value (not a binary dummy) interacted with oil
+
+This sensitivity analysis is critical: it reveals whether our conclusions hold across reasonable alternative specifications.
+
+## VAR estimation
+
+### System specifications
+
+We estimate three VAR systems to capture dynamic transmission:
+
+**Daily VAR (developed markets):**
+
+$$\mathbf{y}_{1,t} = \begin{pmatrix} r_{oil,t} \\ r_{world,t} \\ \Delta r_{rate,t} \end{pmatrix} = \mathbf{c} + \mathbf{A}_1 \mathbf{y}_{1,t-1} + \dots + \mathbf{A}_p \mathbf{y}_{1,t-p} + \mathbf{u}_t$$
+
+**Daily VAR (emerging markets):** same structure with MSCI EM.
+
+**Monthly macro VAR:** $\mathbf{y}_{3,t} = (r_{oil,t}^{monthly}, \text{ISM}_t, \text{CFNAI}_t)'$.
+
+### Cholesky ordering
+
+Oil is ordered first in the Cholesky decomposition. This assumes that oil price shocks can affect financial markets and the real economy contemporaneously, while the reverse does not hold within a single period. Granger causality at lag 1 supports this: oil → equity is significant, while equity → oil is not. At lag 7 some bi-directional causality emerges, which is acknowledged as a limitation.
+
+### Lag selection
+
+Lag length is chosen using four information criteria: AIC, BIC, HQ, FPE. The criteria disagree (BIC/HQ suggest p=1, AIC/FPE suggest p=7 for daily / p=2 for monthly). We estimate both specifications and emphasise the higher-lag results, which produce cleaner residual diagnostics (Ljung-Box on VAR residuals).
+
+### Impulse response functions
+
+We compute orthogonalised IRFs based on the Cholesky decomposition to trace the response of equity returns to a one-standard-deviation oil shock over time. Confidence bands are obtained by **Monte Carlo simulation** with 300 replications at the 95% level.
+
+## Out-of-sample forecasting
+
+We split the sample into:
+
+- **Training period**: 1990–2015
+- **Test period**: 2016–2026 (~10 years out-of-sample)
+
+VAR models are estimated on the training sample only, and recursive forecasts are produced for the test period.
+
+Forecasting performance is evaluated with the Root Mean Squared Error:
+
+$$\text{RMSE} = \sqrt{\frac{1}{H} \sum_{h=1}^{H} (y_{t+h} - \hat{y}_{t+h})^2}$$
+
+We compare each model's RMSE to the in-sample standard deviation of the target series, which corresponds to the unconditional historical-mean forecast. A model RMSE near or above the standard deviation indicates no out-of-sample edge over the naive benchmark — a standard test of predictive content following Welch & Goyal (2008).
+
+## Limitations
+
+Several caveats apply to the analysis:
+
+- **Full-sample estimation** may mask heterogeneity across oil shock episodes (1990 Gulf War, 1998 Asian crisis, 2008 GFC, 2014 shale revolution, 2020 COVID, 2022 Russia–Ukraine).
+- **Frequency mismatch**: daily for finance, monthly for macro. High-frequency financial data may be too noisy to detect slower macro-financial dynamics.
+- **Linearity assumption**: OLS and VAR assume linear relationships. SVAR, GARCH, or threshold-VAR could capture nonlinearities during extreme events.
+- **Common factors**: events like 2008 and 2020 jointly affected oil and equity through omitted common shocks. The framework may misattribute correlated movements to oil.
+- **Geographic mismatch**: CFNAI is US-specific; MSCI EM is global. Periods of US weakness do not perfectly map to EM downturns.
+- **Cholesky identification** is not a structural identification. Kilian (2009)-type SVAR would identify supply vs aggregate demand vs oil-specific demand shocks separately — beyond the scope of this project.

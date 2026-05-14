@@ -1,0 +1,53 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - "*.qmd"
+  resources:
+    - "notebooks/analysis.html"
+    - "notebooks/analysis_files/**"
+    - "report/EMIF_oil_equity_report.pdf"
+    - "outputs/figures/**"
+
+website:
+  title: "Oil Shocks & Global Equity Markets"
+  description: "An empirical study of oil price transmission to developed and emerging equity markets"
+  
+  navbar:
+    background: dark
+    left:
+      - href: index.qmd
+        text: Home
+      - href: methodology.qmd
+        text: Methodology
+      - href: results.qmd
+        text: Results
+      - href: notebook.qmd
+        text: Notebook
+      - href: about.qmd
+        text: About
+    right:
+      - icon: github
+        href: https://github.com/riodesamba/oil-shocks-equity-markets
+        aria-label: GitHub
+
+  page-footer:
+    left: "© 2026 Dimitri Prouvost"
+    right: "Built with [Quarto](https://quarto.org)"
+
+format:
+  html:
+    theme: 
+      light: cosmo
+      dark: darkly
+    css: styles.css
+    toc: true
+    toc-location: right
+    code-fold: true
+    code-tools: true
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    smooth-scroll: true
+
+execute:
+  freeze: auto

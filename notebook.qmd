@@ -1,0 +1,14 @@
+---
+title: "Interactive notebook"
+subtitle: "Full Python analysis with code, outputs, and figures"
+---
+
+::: callout-note
+The notebook below is the complete analysis used in this study. All cells, outputs, and figures are visible. The raw `.ipynb` file is available on [GitHub](https://github.com/riodesamba/oil-shocks-equity-markets/blob/main/notebooks/analysis.ipynb) and can be cloned to re-run locally.
+:::
+
+<iframe src="notebooks/analysis.html" width="100%" height="900px" style="border: 1px solid #ddd; border-radius: 6px;"></iframe>
+
+<p style="text-align: center; margin-top: 1rem;">
+  <a href="notebooks/analysis.html" target="_blank">↗ Open notebook in a new tab</a>
+</p>
