@@ -19,7 +19,7 @@ Do oil price increases have a stronger negative effect on equity returns during 
 
 - 📄 [Full report (PDF)](report/EMIF_oil_equity_report.pdf)
 - 📓 [Interactive notebook](notebook.qmd)
-- 💻 [Source code on GitHub](https://github.com/riodesamba/oil-shocks-equity-markets)
+- 💻 [Source code on GitHub](https://github.com/RioDimitri/oil-shocks-equity-markets)
 
 ## Context
 
