@@ -8,7 +8,7 @@
 
 ---
 
-## TL;DR
+## Summary
 
 - **Methods**: Static OLS with asymmetric and state-dependent specifications, Newey-West HAC inference, three VAR systems with Granger causality and orthogonalised IRFs, out-of-sample forecasting.
 - **Sample**: ~9,400 daily observations (1990–2026) on Brent crude, MSCI World, MSCI EM, US 10-year yield, plus 434 monthly macro observations (CFNAI, ISM, Industrial Production).
