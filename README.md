@@ -30,7 +30,7 @@
 
 ## Context
 
-This empirical study was conducted in April 2026 as the first project of the *Empirical Methods in Finance* course of the MSc Finance programme at HEC Lausanne. It is a group project authored by Adegoke Abraham, Dios Assia, Habib Elina, Murengezi Kevin, and Prouvost Dimitri (maintainer of this repository).
+This empirical study was conducted in April 2026 as the first project of the *Empirical Methods in Finance* course of the MSc Finance programme at HEC Lausanne.
 
 ## Reproducibility
 
