@@ -2,7 +2,7 @@
 title: "Oil Shocks & Global Equity Markets"
 subtitle: "An empirical study of oil price transmission across developed and emerging markets (1990–2026)"
 author: "PROUVOST Dimitri"
-date: 02/05/2026
+date: 05/05/2026
 ---
 
 ## Research question
