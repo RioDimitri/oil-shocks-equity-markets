@@ -2,7 +2,7 @@
 
 > Empirical study of oil price transmission to developed and emerging equity markets — Regime-dependent OLS + VAR + IRF (1990–2026).
 
-**🌐 [Read the full website →](https://RioDimitri.github.io/oil-shocks-equity-markets/)**
+**🌐 [Read the full website →](https://DimitriPr.github.io/oil-shocks-equity-markets/)**
 
 📄 [Full report (PDF)](report/EMIF_oil_equity_report.pdf) · 📓 [Notebook](notebooks/analysis.html) · 💻 [Analysis code](notebooks/analysis.ipynb)
 
@@ -34,7 +34,7 @@
 The analysis is conducted in Python 3 with `pandas`, `numpy`, `statsmodels`, `matplotlib`. To reproduce locally:
 
 ```bash
-git clone https://github.com/RioDimitri/oil-shocks-equity-markets.git
+git clone https://github.com/DimitriPr/oil-shocks-equity-markets.git
 cd oil-shocks-equity-markets
 pip install pandas numpy statsmodels matplotlib jupyter
 jupyter notebook notebooks/analysis.ipynb
@@ -49,4 +49,4 @@ Code released under the [MIT License](LICENSE).
 ## Contact
 
 - **Email**: prouvostdimitri@gmail.com
-- **GitHub**: [@RioDimitri](https://github.com/RioDimitri)
+- **GitHub**: [@DimitriPr](https://github.com/DimitriPr)

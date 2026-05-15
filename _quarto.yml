@@ -29,7 +29,7 @@ website:
         text: About
     right:
       - icon: github
-        href: https://github.com/RioDimitri/oil-shocks-equity-markets
+        href: https://github.com/DimitriPr/oil-shocks-equity-markets
         aria-label: GitHub
     
   page-footer:
