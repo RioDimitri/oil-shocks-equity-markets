@@ -1,3 +1,5 @@
+/*-- scss:rules --*/
+
 /* ============================================
    Bloomberg / Institutional Finance theme
    Dark mode by default, dark green accent
@@ -6,11 +8,25 @@
 /* --- Font imports (Inter for body, IBM Plex Mono for code) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
 
-/* --- CSS variables --- */
+/* --- CSS variables ---
+   Hairline / strong-text colors flip between light and dark themes so that
+   nothing rendered against the page background becomes invisible. The navbar,
+   footer and code blocks have hardcoded dark backgrounds (see _quarto.yml and
+   the `pre` rule below) so their internal borders stay white-on-dark always.
+*/
 :root {
   --accent: #2d5f3f;
   --accent-bright: #4a8b63;
   --accent-faded: rgba(74, 139, 99, 0.15);
+  --hairline: rgba(0, 0, 0, 0.08);
+  --hairline-faint: rgba(0, 0, 0, 0.05);
+  --strong-color: inherit;
+}
+
+[data-bs-theme="dark"] {
+  --hairline: rgba(255, 255, 255, 0.08);
+  --hairline-faint: rgba(255, 255, 255, 0.05);
+  --strong-color: #fff;
 }
 
 /* --- Body typography --- */
@@ -41,7 +57,7 @@ h2 {
   margin-top: 2.5rem;
   margin-bottom: 0.8rem;
   padding-bottom: 0.4rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--hairline);
 }
 
 h3 {
@@ -196,7 +212,7 @@ table thead th {
 
 table tbody td {
   padding: 0.6rem 0.8rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--hairline-faint);
   font-variant-numeric: tabular-nums;
 }
 
@@ -211,7 +227,7 @@ table tbody tr:hover {
 
 .figure img, .quarto-figure img {
   border-radius: 3px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--hairline-faint);
 }
 
 .figure-caption, .quarto-figure-caption, figcaption {
@@ -288,7 +304,7 @@ table tbody tr:hover {
 /* --- Horizontal rules --- */
 hr {
   border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--hairline);
   margin: 2.5rem 0;
 }
 
@@ -310,15 +326,17 @@ ul li::marker {
   color: var(--accent-bright);
 }
 
-/* --- Strong emphasis (bold) --- */
+/* --- Strong emphasis (bold) ---
+   Color flips per theme via --strong-color so light-mode bold isn't white-on-white.
+*/
 strong, b {
-  color: #fff;
+  color: var(--strong-color);
   font-weight: 600;
 }
 
 /* --- iframe (for embedded notebook) : style the border --- */
 iframe {
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid var(--hairline) !important;
   border-radius: 4px;
   background: #fff; /* iframe content is the notebook HTML which has its own light theme */
 }

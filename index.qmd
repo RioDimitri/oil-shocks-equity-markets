@@ -12,8 +12,10 @@ Do oil price increases have a stronger negative effect on equity returns during 
 ## Summary
 
 **Methods**: Static OLS with asymmetric and state-dependent specifications, Newey-West HAC inference, three VAR systems with Granger causality and orthogonalised IRFs, out of sample forecasting.
+
 **Sample**: ~9,400 daily observations (1990–2026) on Brent crude, MSCI World, MSCI EM, US 10-year yield, plus 434 monthly macro observations (CFNAI, ISM, Industrial Production).
-**Main findings**: Oil equity transmission is positive but short-lived (~1 day half-life). No robust evidence of amplification in recessions across specifications. No meaningful difference between developed and emerging markets. Out-of-sample forecasts do not outperform the historical mean consistent with Welch & Goyal (2008).
+
+**Main findings**: Oil equity transmission is positive but short-lived (~1 day half-life). No robust evidence of amplification in recessions across specifications. No meaningful difference between developed and emerging markets. Out of sample forecasts do not outperform the historical mean consistent with Welch & Goyal (2008).
 
 ## Quick links
 
